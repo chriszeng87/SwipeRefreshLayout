@@ -2,7 +2,7 @@
 An extension of android.support.v4.widget.SwipeRefreshLayout with loading more function for ListView
 
 ## Note ##
-It only serves for ListView now.
+It only serves for ListView now. You can modify it to support other widget.
 
 ## Demo ##
 [Download apk](/demo.apk)
