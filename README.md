@@ -25,7 +25,7 @@ Use it in your layout xml
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF"
-        android:dividerHeight="1px" />
+        android:dividerHeight="1dp" />
 </com.demievil.swiperefreshlayout.RefreshLayout>
 ````
 
