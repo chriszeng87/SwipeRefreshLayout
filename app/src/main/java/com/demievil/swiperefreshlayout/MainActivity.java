@@ -3,12 +3,16 @@ package com.demievil.swiperefreshlayout;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity {
 
+    private final static String TAG = "MainActivity";
     private RefreshLayout mRefreshLayout;
     private ListView mListView;
     private ArrayAdapter<String> mArrayAdapter;
@@ -35,6 +39,7 @@ public class MainActivity extends ActionBarActivity {
                 R.color.google_red,
                 R.color.google_yellow);
 
+        mRefreshLayout.setRefreshing(true);
         mRefreshLayout.setOnRefreshListener(new RefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -55,12 +60,38 @@ public class MainActivity extends ActionBarActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        values.add("Swipe Up to Load More "+ values.size());
+                        values.add("Swipe Up to Load More " + values.size());
                         mArrayAdapter.notifyDataSetChanged();
                         mRefreshLayout.setLoading(false);
                     }
                 }, 2000);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_refresh:
+                if (mRefreshLayout !=null) {
+                    mRefreshLayout.setRefreshing(true);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            values.add(0, "Swipe Down to Refresh " + values.size());
+                            mArrayAdapter.notifyDataSetChanged();
+                            mRefreshLayout.setRefreshing(false);
+                        }
+                    }, 2000);
+                }
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
