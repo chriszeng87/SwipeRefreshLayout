@@ -2,7 +2,7 @@
 An extension of android.support.v4.widget.SwipeRefreshLayout with loading more function for ListView
 
 ## Note ##
-It only server for ListView now.
+It only serves for ListView now. You can modify it to support other widget.
 
 ## Demo ##
 [Download apk](/demo.apk)
@@ -25,7 +25,7 @@ Use it in your layout xml
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF"
-        android:dividerHeight="1px" />
+        android:dividerHeight="1dp" />
 </com.demievil.swiperefreshlayout.RefreshLayout>
 ````
 
